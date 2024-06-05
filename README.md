@@ -11,18 +11,21 @@ Clone the Repository: Clone this repository to your local machine using the foll
 git clone https://github.com/NehaThawani44/Encryption.git
 
 `´´
-## 1. Install Dependencies: Make sure you have Java 17 and Maven installed on your machine. Then, navigate to the project directory and install the dependencies:
+## 1. Install Dependencies: 
+Make sure you have Java 17 and Maven installed on your machine. Then, navigate to the project directory and install the dependencies:
 
 `´´
 cd superhero-service
 mvn install
 `´´
-## 2. Run the Application: Start the application using Maven:
+## 2. Run the Application: 
+Start the application using Maven:
 
 `´´
 mvn spring-boot:run
 `´´
-## 3. Access the Web Service: Once the application is running, you can access the web service using the provided endpoints.
+## 3. Access the Web Service: 
+Once the application is running, you can access the web service using the provided endpoints.
 
 ### Endpoints
 The superhero distribution platform provides the following endpoints:
