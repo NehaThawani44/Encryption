@@ -14,8 +14,7 @@ git clone https://github.com/NehaThawani44/Encryption.git
 `´´cd superhero-service
   mvn install
 `´´
-##2. Run the Application: Start the application using Maven:
-
+## 2. Run the Application: Start the application using Maven:
 
 `´´
 mvn spring-boot:run
