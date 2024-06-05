@@ -34,45 +34,58 @@ class SuperheroControllerTests {
     @BeforeEach
     void setUp() {
         sampleSuperheroes = Arrays.asList(
-                new Superhero("Superman", new Superhero.Identity("Clark", "Kent"), LocalDate.parse("1977-04-18"), List.of("flight", "strength", "invulnerability")),
-                new Superhero("Batman", new Superhero.Identity("Bruce", "Wayne"), LocalDate.parse("1915-04-17"), List.of())
+                new Superhero("Superman", new Superhero.Identity("Clark", "Kent"), LocalDate.parse("1977-04-18"), Arrays.asList("strength", "flight", "invulnerability")),
+                new Superhero("Batman", new Superhero.Identity("Bruce", "Wayne"), LocalDate.parse("1915-04-17"), Arrays.asList("strength", "invulnerability"))
         );
-    }
-
-    @Test
-    void testGetAllSuperheroes() throws Exception {
-        given(superheroService.getAllSuperheroes()).willReturn(sampleSuperheroes);
-
-        mockMvc.perform(get("/api/superheroes")
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").value("Superman"))
-                .andExpect(jsonPath("$[1].name").value("Batman"));
     }
 
     @Test
     void testGetAllSuperheroesWithEncryption() throws Exception {
         given(superheroService.getAllSuperheroes()).willReturn(sampleSuperheroes);
+        String expectedJson = "[\"" + EncryptionUtil.encryptIdentity("Clark Kent", 5) + "\", \"" + EncryptionUtil.encryptIdentity("Bruce Wayne", 5) + "\"]";
 
-        mockMvc.perform(get("/api/superheroes?encrypt=true")
-                        .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/superheroes")
+                        .param("encrypt", "true")
+                        .accept("application/json"))
                 .andExpect(status().isOk())
-                .andExpect(result -> {
-                    String content = result.getResponse().getContentAsString();
-                    assert content.contains(EncryptionUtil.encryptIdentity("Clark Kent", 5));
-                    assert content.contains(EncryptionUtil.encryptIdentity("Bruce Wayne", 5));
-                });
+                .andExpect(content().json(expectedJson));
     }
 
     @Test
-    void testGetSuperheroesByPower() throws Exception {
-        given(superheroService.getSuperheroesByPower("flight")).willReturn(Arrays.asList(sampleSuperheroes.get(0)));
+    void testGetAllSuperheroesWithoutEncryption() throws Exception {
+        given(superheroService.getAllSuperheroes()).willReturn(sampleSuperheroes);
+        String expectedJson = "[\"Clark Kent\", \"Bruce Wayne\"]";
 
-        mockMvc.perform(get("/api/superheroes/by-power?power=flight")
-                        .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/superheroes")
+                        .accept("application/json"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").value("Superman"))
-                .andExpect(jsonPath("$[0].superpowers").isArray())
-                .andExpect(jsonPath("$[0].superpowers").value("flight"));
+                .andExpect(content().json(expectedJson));
     }
+
+    @Test
+    void testGetSuperheroesByPowerWithEncryption() throws Exception {
+        given(superheroService.getSuperheroesByPower("strength")).willReturn(sampleSuperheroes);
+        String expectedJson = "[\"" + EncryptionUtil.encryptIdentity("Clark Kent", 5) + "\", \"" + EncryptionUtil.encryptIdentity("Bruce Wayne", 5) + "\"]";
+
+        mockMvc.perform(get("/api/superheroes/by-power")
+                        .param("power", "strength")
+                        .param("encrypt", "true")
+                        .accept("application/json"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(expectedJson));
+    }
+
+    @Test
+    void testGetSuperheroesByPowerWithoutEncryption() throws Exception {
+        given(superheroService.getSuperheroesByPower("strength")).willReturn(sampleSuperheroes);
+        String expectedJson = "[\"Clark Kent\", \"Bruce Wayne\"]";
+
+        mockMvc.perform(get("/api/superheroes/by-power")
+                        .param("power", "strength")
+                        .accept("application/json"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(expectedJson));
+    }
+
+
 }

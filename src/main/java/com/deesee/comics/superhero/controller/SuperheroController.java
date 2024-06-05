@@ -16,31 +16,32 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/superheroes")
 public class SuperheroController {
 
-    @Autowired
-    private SuperheroService superheroService;
 
-    @GetMapping
-    public List<Superhero> getAllSuperheroes(@RequestParam(required = false) Boolean encrypt) {
-        return processHeroes(superheroService.getAllSuperheroes(), encrypt);
-    }
+        @Autowired
+        private SuperheroService superheroService;
 
-    @GetMapping("/by-power")
-    public List<Superhero> getSuperheroesByPower(@RequestParam String power, @RequestParam(required = false) Boolean encrypt) {
-        return processHeroes(superheroService.getSuperheroesByPower(power), encrypt);
-    }
+        @GetMapping
+        public List<String> getAllSuperheroes(@RequestParam(required = false) Boolean encrypt) {
+            return processHeroes(superheroService.getAllSuperheroes(), encrypt);
+        }
 
-    private List<Superhero> processHeroes(List<Superhero> heroes, Boolean encrypt) {
-        if (Boolean.TRUE.equals(encrypt)) {
+        @GetMapping("/by-power")
+        public List<String> getSuperheroesByPower(@RequestParam String power, @RequestParam(required = false) Boolean encrypt) {
+            return processHeroes(superheroService.getSuperheroesByPower(power), encrypt);
+        }
+
+        private List<String> processHeroes(List<Superhero> heroes, Boolean encrypt) {
             return heroes.stream()
-                    .map(this::encryptSuperheroIdentity)
+                    .map(hero -> formatIdentity(hero, encrypt))
                     .collect(Collectors.toList());
         }
-        return heroes;
+
+        private String formatIdentity(Superhero hero, Boolean encrypt) {
+            String identity = hero.getIdentity().getFirstName() + " " + hero.getIdentity().getLastName();
+            if (Boolean.TRUE.equals(encrypt)) {
+                return EncryptionUtil.encryptIdentity(identity, 5);  // Using a fixed shift of 5 for this example
+            }
+            return identity;
+        }
     }
 
-    private Superhero encryptSuperheroIdentity(Superhero hero) {
-        String encryptedFirstName = EncryptionUtil.encryptIdentity(hero.getIdentity().getFirstName(), 5);
-        String encryptedLastName = EncryptionUtil.encryptIdentity(hero.getIdentity().getLastName(), 5);
-        return new Superhero(hero.getName(), new Superhero.Identity(encryptedFirstName, encryptedLastName), hero.getBirthday(), hero.getSuperpowers());
-    }
-}

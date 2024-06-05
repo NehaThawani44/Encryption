@@ -18,7 +18,7 @@ public class EncryptionUtilTests {
     void testEncryptIdentityWithWrapAround() {
         String original = "zorro";
         int shift = 3;
-        String expected = "csruu";  // Wrap around from 'z' to 'c'
+        String expected = "cruur";  // Wrap around from 'z' to 'c'
         assertEquals(expected, EncryptionUtil.encryptIdentity(original, shift));
     }
 
@@ -26,7 +26,7 @@ public class EncryptionUtilTests {
     void testEncryptIdentityWithSpace() {
         String original = "bruce wayne";
         int shift = 5;
-        String expected = "gwyjx dftbs";  // Handles spaces and shifts
+        String expected = "gwzhj bfdsj";  // Handles spaces and shifts
         assertEquals(expected, EncryptionUtil.encryptIdentity(original, shift));
     }
 }
