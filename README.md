@@ -24,6 +24,7 @@ Start the application using Maven:
 `´´
 mvn spring-boot:run
 `´´
+
 ## 3. Access the Web Service: 
 Once the application is running, you can access the web service using the provided endpoints.
 
@@ -39,9 +40,10 @@ encrypt: (optional) Encrypt the identities of the retrieved superheroes. Set to 
 
 ### Example Usage
 Retrieve all superheroes:
-`´´GET /api/superheroes `´´
+`´´
+GET /api/superheroes
+`´´
 Retrieve superheroes with specific superpowers:
-
 `´´
 GET /api/superheroes/by-power?power=strength,flight&encrypt=true
 `´´
