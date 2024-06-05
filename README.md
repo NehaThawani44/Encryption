@@ -6,23 +6,23 @@ To get started with the superhero distribution platform, follow these steps:
 
 Clone the Repository: Clone this repository to your local machine using the following command:
 
-`´´
+```
 git clone https://github.com/NehaThawani44/Encryption.git
-`´´
+```
 
 ## 1. Install Dependencies: 
 Make sure you have Java 17 and Maven installed on your machine. Then, navigate to the project directory and install the dependencies:
 
-`´´
+```
 cd superhero-service
 mvn install
-`´´
+```
 ## 2. Run the Application: 
 Start the application using Maven:
 
-`´´
+```
 mvn spring-boot:run
-`´´
+```
 
 ## 3. Access the Web Service: 
 Once the application is running, you can access the web service using the provided endpoints.
@@ -39,14 +39,14 @@ encrypt: (optional) Encrypt the identities of the retrieved superheroes. Set to 
 
 ### Example Usage
 Retrieve all superheroes:
-`´´
+```
 GET /api/superheroes
-`´´
+```
 
 Retrieve superheroes with specific superpowers:
-`´´
+```
 GET /api/superheroes/by-power?power=strength,flight&encrypt=true
-`´´
+```
 ## Data Encryption
 The platform uses proprietary encryption called "DeeSee Chiffre" to encrypt the true identities of superheroes. This encryption shifts each letter of the identity by a specified key, ensuring added protection for enrolled superheroes.
 
