@@ -54,6 +54,7 @@ The platform uses proprietary encryption called "DeeSee Chiffre" to encrypt the 
 ## Superhero JSON Structure
 The JSON structure for superheroes follows this format:
 
+```
 {
     "name": "Superman",
     "identity": {
@@ -63,3 +64,4 @@ The JSON structure for superheroes follows this format:
     "birthday": "1977-04-18",
     "superpowers": ["flight", "strength", "invulnerability"]
 }
+```
