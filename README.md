@@ -31,6 +31,7 @@ Once the application is running, you can access the web service using the provid
 The superhero distribution platform provides the following endpoints:
 
 GET /api/superheroes: Retrieve all superheroes stored in the platform.
+
 GET /api/superheroes/by-power: Retrieve superheroes that match given superpower(s).
 
 ### Query Parameters
