@@ -7,12 +7,15 @@ To get started with the superhero distribution platform, follow these steps:
 Clone the Repository: Clone this repository to your local machine using the following command:
 
 ´´`
+
 git clone https://github.com/NehaThawani44/Encryption.git
+
 `´´
 ## 1. Install Dependencies: Make sure you have Java 17 and Maven installed on your machine. Then, navigate to the project directory and install the dependencies:
 
-`´´cd superhero-service
-  mvn install
+`´´
+cd superhero-service
+mvn install
 `´´
 ## 2. Run the Application: Start the application using Maven:
 
