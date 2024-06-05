@@ -42,7 +42,7 @@ Retrieve all superheroes:
 ```
 GET /api/superheroes
 ```
-
+ 
 Retrieve superheroes with specific superpowers:
 ```
 GET /api/superheroes/by-power?power=strength,flight&encrypt=true
