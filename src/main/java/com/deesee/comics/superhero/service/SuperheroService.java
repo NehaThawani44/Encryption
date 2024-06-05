@@ -25,11 +25,15 @@ public class SuperheroService {
         public List<Superhero> getAllSuperheroes() {
             return new ArrayList<>(superheroes);
         }
-
+        //Acts like inmemory cache
         public List<Superhero> getSuperheroesByPower(String power) {
             return superheroes.stream()
                     .filter(hero -> hero.getSuperpowers().contains(power))
                     .collect(Collectors.toList());
         }
+    public void addSuperhero(Superhero superhero) {
+        superheroes.add(superhero);
+    }
+
     }
 
