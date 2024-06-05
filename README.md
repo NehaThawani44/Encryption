@@ -34,11 +34,11 @@ GET /superheroes: Retrieve all superheroes stored in the platform.
 
 GET /superheroes/by-power: Retrieve superheroes that match given superpower(s).
 
-### Query Parameters
+## Query Parameters
 power: (required for /by-power endpoint) Filter superheroes by the specified superpower(s). Accepts a comma-separated list of superpowers.
 encrypt: (optional) Encrypt the identities of the retrieved superheroes. Set to true to enable encryption.
 
-### Example Usage
+## Example Usage
 Retrieve all superheroes:
 ```
 GET /superheroes
