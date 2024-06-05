@@ -1,7 +1,7 @@
 ### DeeSee Comics Superhero Distribution Platform
 Welcome to the DeeSee Comics Superhero Distribution Platform! This platform provides a web service for managing and retrieving information about superheroes employed by DeeSee Comics. With this platform, you can store superheroes, filter them by their superpowers, and even encrypt their true identities for added protection.
 
-##Getting Started
+## Getting Started
 To get started with the superhero distribution platform, follow these steps:
 
 Clone the Repository: Clone this repository to your local machine using the following command:
