@@ -6,19 +6,17 @@ To get started with the superhero distribution platform, follow these steps:
 
 Clone the Repository: Clone this repository to your local machine using the following command:
 
-bash
 `´´
-git clone https://github.com/your-username/superhero-distribution-platform.git
+git clone https://github.com/NehaThawani44/Encryption.git
 `´´
 Install Dependencies: Make sure you have Java 17 and Maven installed on your machine. Then, navigate to the project directory and install the dependencies:
 
-bash
 `´´cd superhero-service
-mvn install
+  mvn install
 `´´
 Run the Application: Start the application using Maven:
 
-bash
+
 `´´
 mvn spring-boot:run
 `´´
@@ -37,11 +35,11 @@ encrypt: (optional) Encrypt the identities of the retrieved superheroes. Set to 
 ### Example Usage
 Retrieve all superheroes:
 
-bash
+
 `´´GET /api/superheroes `´´
 Retrieve superheroes with specific superpowers:
 
-bash
+
 `´´
 GET /api/superheroes/by-power?power=strength,flight&encrypt=true
 `´´
